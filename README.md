@@ -64,7 +64,7 @@ Before starting, make sure you have:
 
    ```
 
-2. Create a Virtual Environment
+2. **Create a Virtual Environment**
 
    ```bash
    python -m venv venv
@@ -72,14 +72,14 @@ Before starting, make sure you have:
 
    ```
 
-3. Install Dependencies
+3. **Install Dependencies**
 
    ```bash
    pip install -r requirements.txt
 
    ```
 
-4. Set Up the Database
+4. **Set Up the Database**
 
    - Create a PostgreSQL database.
    - Update the .env file with your database credentials:
@@ -88,22 +88,22 @@ Before starting, make sure you have:
    DATABASE_URL=postgresql://user:password@localhost/chat_db
    ```
 
-5. Run the application
+5. **Run the application**
 
    ```bash
    uvicorn app.main:app --reload
 
    ```
 
-6. Access the Application Open your browser and navigate to http://127.0.0.1:8000.
+6. **Access the Application Open your browser and navigate to http://127.0.0.1:8000.**
 
 ## Technologies Used
 
-- FastAPI: Backend framework for building APIs and handling WebSockets.
-- SQLAlchemy: ORM for database interaction.
-- PostgreSQL: Database for storing user and chat data.
-- HTML, CSS, JavaScript: Frontend for the chat interface.
-- WebSockets: For real-time, bi-directional communication.
+- **FastAPI**: Backend framework for building APIs and handling WebSockets.
+- **SQLAlchemy**: ORM for database interaction.
+- **PostgreSQL**: Database for storing user and chat data.
+- **HTML, CSS, JavaScript**: Frontend for the chat interface.
+- **WebSockets**: For real-time, bi-directional communication.
 
 ## Future Improvements
 

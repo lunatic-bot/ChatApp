@@ -59,7 +59,7 @@ Before starting, make sure you have:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/your-username/chat-app.git
+   git clone https://github.com/lunatic-bot/chat-app.git
    cd chat-app
 
    ```
@@ -81,11 +81,12 @@ Before starting, make sure you have:
 
 4. Set Up the Database
 
-- Create a PostgreSQL database.
-- Update the .env file with your database credentials:
-  ```bash
-  DATABASE_URL=postgresql://user:password@localhost/chat_db
-  ```
+   - Create a PostgreSQL database.
+   - Update the .env file with your database credentials:
+
+   ```bash
+   DATABASE_URL=postgresql://user:password@localhost/chat_db
+   ```
 
 5. Run the application
 

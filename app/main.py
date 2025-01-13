@@ -10,15 +10,6 @@ from pathlib import Path
 
 app = FastAPI(debug=True)
 
-# Database Initialization
-# Base.metadata.create_all(bind=engine)
-
-# async def init_db():
-#     # Run create_all within an async context
-#     async with engine.begin() as conn:
-#         await conn.run_sync(Base.metadata.create_all)
-
-# init_db()
 
 
 # Set the correct path to your 'static' and 'templates' directories

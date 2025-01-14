@@ -1,8 +1,13 @@
 # This creates all tables that are defined in your models
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import sessionmaker
-# from models import Base
-from database import async_engine, Base
+from database import async_engine
+from models import Base
+
+
+# import logging
+# logging.basicConfig()
+# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
 
 # Assuming async_engine is your asynchronous engine

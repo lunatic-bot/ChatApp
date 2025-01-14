@@ -5,7 +5,7 @@ from database import Base, async_engine
 
 # from database import init_db
 from auth import auth_router
-from websocket import websocket_router
+from websockets import websocket_router
 from pathlib import Path
 
 app = FastAPI(debug=True)

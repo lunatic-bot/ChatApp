@@ -7,12 +7,11 @@ from passlib.hash import bcrypt
 
 auth_router = APIRouter()
 
-def get_db():
-    db = AsyncSessionLocal()
-    try:
+
+async def get_db() -> AsyncSession:
+    async with AsyncSessionLocal() as db:
         yield db
-    finally:
-        db.close()
+        await db.close()
 
 @auth_router.post("/register", response_model=UserResponse)
 async def register_user(user: UserCreate, db: AsyncSession = Depends(get_db)):

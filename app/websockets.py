@@ -19,13 +19,14 @@ class ConnectionManager:
             await connection.send_text(message)
 
 manager = ConnectionManager()
-
+    
 @websocket_router.websocket("/chat/{room_id}")
-async def chat_websocket(websocket: WebSocket):
+async def chat_websocket(websocket: WebSocket, room_id: int):
     await manager.connect(websocket)
     try:
         while True:
             data = await websocket.receive_text()
-            await manager.broadcast(data)
+            # await manager.broadcast(data)
+            await manager.broadcast(f"Room {room_id}: {data}")
     except WebSocketDisconnect:
         manager.disconnect(websocket)

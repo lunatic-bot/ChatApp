@@ -59,7 +59,7 @@ Before starting, make sure you have:
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/lunatic-bot/chat-app.git
+   git clone https://github.com/lunatic-bot/ChatApp.git
    cd chat-app
 
    ```

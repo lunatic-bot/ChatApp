@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return; // Prevent further script execution if any element is missing
     }
 
+    // const ws = new WebSocket("ws://localhost:8000/chat/1");
     const ws = new WebSocket("ws://localhost:8000/chat/1");
 
     ws.onopen = function() {

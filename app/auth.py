@@ -23,3 +23,6 @@ async def register_user(user: UserCreate, db: AsyncSession = Depends(get_db)):
 
     print('New user : ', new_user)
     return new_user
+
+
+

@@ -5,10 +5,6 @@ from database import async_engine
 from models import Base
 
 
-# import logging
-# logging.basicConfig()
-# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
-
 
 # Assuming async_engine is your asynchronous engine
 async def recreate_tables():

@@ -42,6 +42,6 @@ async def chat_websocket(websocket: WebSocket, room_id: int):
             await manager.broadcast(f"Room {room_id}: {data}")
     except WebSocketDisconnect:
         manager.disconnect(websocket)
-        print(f"Disconnected from room {room_id}")  # Log for debugging
+        print(f"Disconnected from room {room_id}")  
 
 

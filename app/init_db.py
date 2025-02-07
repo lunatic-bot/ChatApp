@@ -14,7 +14,7 @@ async def recreate_tables():
         # Create all tables
         await conn.run_sync(Base.metadata.create_all)
 
-# To call this function
+
 import asyncio
 
 asyncio.run(recreate_tables())

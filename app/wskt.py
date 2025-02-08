@@ -39,7 +39,11 @@ class ConnectionManager:
 manager = ConnectionManager()
 
 # Initialize Wikipedia API
-wiki_wiki = wikipediaapi.Wikipedia("en")
+# wiki_wiki = wikipediaapi.Wikipedia("en")
+USER_AGENT = "MyChatbot/1.0 (myemail@example.com)"
+
+# Create Wikipedia API object with User-Agent
+wiki_wiki = wikipediaapi.Wikipedia(user_agent=USER_AGENT, language="en")
 
 def search_wikipedia(query: str) -> str:
     """Search Wikipedia for the given query and return the summary."""

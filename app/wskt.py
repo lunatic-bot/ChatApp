@@ -24,16 +24,20 @@ class ConnectionManager:
         Sends a message to all active WebSocket connections.
         If a connection is disconnected, it removes it from the active connections list.
         """
-        disconnected_clients = []  # List to track disconnected clients
+        disconnected_clients = []
         for connection in self.active_connections:
             try:
-                await connection.send_text(message)  # Send the message to the client
+                await connection.send_text(message)
             except WebSocketDisconnect:
-                disconnected_clients.append(connection)  # Mark disconnected clients
-        
-        # Remove all disconnected clients from the active connections list
+                disconnected_clients.append(connection)
+
+        # Remove disconnected clients
         for client in disconnected_clients:
             self.disconnect(client)
+
+    async def send_message(self, websocket: WebSocket, message: str):
+        """Sends a message to a specific WebSocket client."""
+        await websocket.send_text(message)
 
 # Instantiate the connection manager to handle WebSocket connections
 manager = ConnectionManager()
@@ -45,15 +49,23 @@ async def chat_websocket(websocket: WebSocket, room_id: int):
     
     - Each client connects to a specific chat room using `room_id`.
     - Messages received from one client are broadcasted to all connected clients.
+    - The application replies with the same message.
     """
-    await manager.connect(websocket)  # Establish connection
+    await manager.connect(websocket)
     print(f"New connection to room {room_id}")  
 
     try:
         while True:
             data = await websocket.receive_text()  # Receive message from the client
-            print(f"Received message in room {room_id}: {data}")  
-            await manager.broadcast(f"Room {room_id}: {data}")  # Broadcast message to all clients
+            print(f"Received message in room {room_id}: {data}")
+
+            # Broadcast the user's message to all clients
+            await manager.broadcast(f"User: {data}")
+
+            # Application replies with the same message after a short delay (simulating an AI bot)
+            bot_response = f"Bot: {data}"  # Simulated chatbot response
+            await manager.send_message(websocket, bot_response)  
+
     except WebSocketDisconnect:
         manager.disconnect(websocket)  # Handle client disconnection
         print(f"Disconnected from room {room_id}")  

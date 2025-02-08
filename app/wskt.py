@@ -1,6 +1,7 @@
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from transformers import pipeline
 from typing import List
+import wikipediaapi
 
 # Initialize FastAPI router
 websocket_router = APIRouter()
@@ -37,10 +38,33 @@ class ConnectionManager:
 
 manager = ConnectionManager()
 
+# Initialize Wikipedia API
+wiki_wiki = wikipediaapi.Wikipedia("en")
+
+def search_wikipedia(query: str) -> str:
+    """Search Wikipedia for the given query and return the summary."""
+    page = wiki_wiki.page(query)
+    if page.exists():
+        return page.summary[:500]  # Return the first 500 characters
+    return None  # Return None if no page is found
+
 async def get_ai_response(user_message: str) -> str:
-    """Generate AI response using a local Hugging Face model."""
+    """Generate response using Wikipedia if possible, otherwise use AI model."""
+    
+    # Check if the message is a factual question
+    if "who is" in user_message.lower() or "what is" in user_message.lower():
+        wiki_answer = search_wikipedia(user_message)
+        if wiki_answer:
+            return wiki_answer  # Return Wikipedia answer if found
+    
+    # If Wikipedia search fails, use AI model
     response = chat_model(user_message, max_length=50, do_sample=True)
     return response[0]["generated_text"]
+
+# async def get_ai_response(user_message: str) -> str:
+#     """Generate AI response using a local Hugging Face model."""
+#     response = chat_model(user_message, max_length=50, do_sample=True)
+#     return response[0]["generated_text"]
 
 @websocket_router.websocket("/chat/{room_id}")
 async def chat_websocket(websocket: WebSocket, room_id: int):
